@@ -15,14 +15,10 @@ import ru.techpark.myhw2.clicklistener.MyClickListener
 import ru.techpark.myhw2.data.DataList
 import ru.techpark.myhw2.data.DataSource
 
-class RecyclerFragment() : Fragment(), MyClickListener {
+class RecyclerFragment : Fragment(), MyClickListener {
 
     private lateinit var mAdapter: MyAdapter
     private lateinit var listener: MyClickListener
-
-    constructor(listener: MyClickListener) : this() {
-        this.listener = listener
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
