@@ -31,7 +31,7 @@ class SingleFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
+        savedInstanceState?.let {
             number = savedInstanceState.getInt("number")
             color = savedInstanceState.getInt("color")
         }
