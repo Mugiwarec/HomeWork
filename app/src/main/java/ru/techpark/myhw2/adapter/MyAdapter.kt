@@ -26,9 +26,9 @@ class MyAdapter(data: MutableList<DataSource>, listener: MyClickListener) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data: DataSource = mData[position]
 
-        holder.getText().text = data.getNumber().toString()
-        holder.getText().setTextColor(data.getColor())
-        holder.getText().setBackgroundColor(Color.GRAY)
+        holder.mTextView.text = data.mNumber.toString()
+        holder.mTextView.setTextColor(data.mColor)
+        holder.mTextView.setBackgroundColor(Color.GRAY)
     }
 
     override fun getItemCount(): Int = mData.size

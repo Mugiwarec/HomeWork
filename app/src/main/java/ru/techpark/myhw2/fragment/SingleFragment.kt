@@ -16,8 +16,8 @@ class SingleFragment() : Fragment() {
     private lateinit var mTextView: TextView
 
     constructor(data: DataSource) : this() {
-        number = data.getNumber()
-        color = data.getColor()
+        number = data.mNumber
+        color = data.mColor
     }
 
     override fun onCreateView(

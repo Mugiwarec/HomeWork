@@ -11,17 +11,16 @@ import ru.techpark.myhw2.data.DataSource
 class MyViewHolder(itemView: View, myClickListener: MyClickListener) :
     RecyclerView.ViewHolder(itemView) {
 
-    private val mTextView: TextView = itemView.findViewById(R.id.number)
+    var mTextView: TextView = itemView.findViewById(R.id.number)
+        private set
 
     init {
         mTextView.setOnClickListener {
             val pos: Int = adapterPosition
-            val data: DataSource = DataList.getData()[pos]
+            val data: DataSource = DataList.mData[pos]
 
             myClickListener.onSoloClick(data)
         }
     }
-
-    fun getText(): TextView = mTextView
 
 }

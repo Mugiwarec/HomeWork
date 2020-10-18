@@ -2,12 +2,12 @@ package ru.techpark.myhw2.data
 
 import android.graphics.Color
 
-class DataSource constructor(private val mNumber: Int) {
+class DataSource constructor(mNumber: Int) {
 
-    private val mColor = if (mNumber % 2 == 0) Color.RED else Color.BLUE
+    var mNumber: Int = mNumber
+        private set
 
-    fun getNumber(): Int = mNumber
-
-    fun getColor(): Int = mColor
+    var mColor = if (mNumber % 2 == 0) Color.RED else Color.BLUE
+        private set
 
 }

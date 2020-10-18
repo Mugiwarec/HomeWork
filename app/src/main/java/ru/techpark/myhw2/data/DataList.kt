@@ -2,12 +2,11 @@ package ru.techpark.myhw2.data
 
 object DataList {
 
-    private var counterNumbers = 100
-    private val mData: MutableList<DataSource> = (1..100).map { DataSource(it) }.toMutableList()
+    var counterNumbers = 100
+        private set
 
-    fun getCounter(): Int = counterNumbers
-
-    fun getData(): MutableList<DataSource> = mData
+    var mData: MutableList<DataSource> = (1..counterNumbers).map { DataSource(it) }.toMutableList()
+        private set
 
     fun addList() {
         counterNumbers++

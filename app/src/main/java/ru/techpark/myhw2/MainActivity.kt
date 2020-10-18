@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), MyClickListener {
             supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
 
         if (recyclerFragment == null)
-            recyclerFragment = RecyclerFragment()
+            recyclerFragment = RecyclerFragment(this)
 
         showRecyclerView()
     }

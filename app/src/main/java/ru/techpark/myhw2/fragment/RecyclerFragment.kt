@@ -1,5 +1,6 @@
 package ru.techpark.myhw2.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,16 +15,19 @@ import ru.techpark.myhw2.clicklistener.MyClickListener
 import ru.techpark.myhw2.data.DataList
 import ru.techpark.myhw2.data.DataSource
 
-class RecyclerFragment : Fragment(), MyClickListener {
+class RecyclerFragment() : Fragment(), MyClickListener {
 
     private lateinit var mAdapter: MyAdapter
     private lateinit var listener: MyClickListener
 
+    constructor(listener: MyClickListener) : this() {
+        this.listener = listener
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        listener = activity as MyClickListener
-        mAdapter = MyAdapter(DataList.getData(), listener)
+        mAdapter = MyAdapter(DataList.mData, listener)
     }
 
     override fun onCreateView(
@@ -42,7 +46,7 @@ class RecyclerFragment : Fragment(), MyClickListener {
         val button: Button = view.findViewById(R.id.button_add)
         button.setOnClickListener {
             DataList.addList()
-            mAdapter.notifyItemChanged(DataList.getCounter())
+            mAdapter.notifyItemChanged(DataList.counterNumbers)
         }
 
         val columns: Int = resources.getInteger(R.integer.counter_columns)
@@ -53,6 +57,12 @@ class RecyclerFragment : Fragment(), MyClickListener {
 
     override fun onSoloClick(data: DataSource) {
         listener.onSoloClick(data)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        listener = context as MyClickListener
     }
 
     companion object {
