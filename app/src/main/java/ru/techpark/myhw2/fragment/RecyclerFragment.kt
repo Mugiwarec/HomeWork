@@ -17,11 +17,13 @@ import ru.techpark.myhw2.data.DataSource
 class RecyclerFragment : Fragment(), MyClickListener {
 
     private lateinit var mAdapter: MyAdapter
+    private lateinit var listener: MyClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mAdapter = MyAdapter(DataList.getData(), this)
+        listener = activity as MyClickListener
+        mAdapter = MyAdapter(DataList.getData(), listener)
     }
 
     override fun onCreateView(
@@ -35,7 +37,7 @@ class RecyclerFragment : Fragment(), MyClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
 
         val button: Button = view.findViewById(R.id.button_add)
         button.setOnClickListener {
@@ -50,11 +52,7 @@ class RecyclerFragment : Fragment(), MyClickListener {
     }
 
     override fun onSoloClick(data: DataSource) {
-        if (activity == null || activity !is MyClickListener) {
-            return
-        }
-
-        (activity as MyClickListener).onSoloClick(data)
+        listener.onSoloClick(data)
     }
 
     companion object {

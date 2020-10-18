@@ -31,12 +31,6 @@ class MyAdapter(data: MutableList<DataSource>, listener: MyClickListener) :
         holder.getText().setBackgroundColor(Color.GRAY)
     }
 
-    override fun getItemCount(): Int {
-        return mData.size
-    }
-
-    fun getDataList(): List<DataSource> {
-        return mData
-    }
+    override fun getItemCount(): Int = mData.size
 
 }

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Myhw2</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="button_add">ADD</string>
 </resources>

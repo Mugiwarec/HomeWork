@@ -22,8 +22,6 @@ class MyViewHolder(itemView: View, myClickListener: MyClickListener) :
         }
     }
 
-    fun getText(): TextView {
-        return mTextView
-    }
+    fun getText(): TextView = mTextView
 
 }

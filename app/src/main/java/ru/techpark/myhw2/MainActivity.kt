@@ -19,9 +19,8 @@ class MainActivity : AppCompatActivity(), MyClickListener {
         recyclerFragment =
             supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
 
-        if (recyclerFragment == null) {
+        if (recyclerFragment == null)
             recyclerFragment = RecyclerFragment()
-        }
 
         showRecyclerView()
     }
