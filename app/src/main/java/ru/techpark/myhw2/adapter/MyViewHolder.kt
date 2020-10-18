@@ -8,21 +8,21 @@ import ru.techpark.myhw2.clicklistener.MyClickListener
 import ru.techpark.myhw2.data.DataList
 import ru.techpark.myhw2.data.DataSource
 
-class MyViewHolder(itemView: View, myClickListener: MyClickListener)
-    : RecyclerView.ViewHolder(itemView) {
+class MyViewHolder(itemView: View, myClickListener: MyClickListener) :
+    RecyclerView.ViewHolder(itemView) {
 
     private val mTextView: TextView = itemView.findViewById(R.id.number)
 
     init {
         mTextView.setOnClickListener {
-            var pos: Int = adapterPosition
-            var data: DataSource = DataList.getData()[pos]
+            val pos: Int = adapterPosition
+            val data: DataSource = DataList.getData()[pos]
 
             myClickListener.onSoloClick(data)
         }
     }
-    
-    fun getText() : TextView {
+
+    fun getText(): TextView {
         return mTextView
     }
 

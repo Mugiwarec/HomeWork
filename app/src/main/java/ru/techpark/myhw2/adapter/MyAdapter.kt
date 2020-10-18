@@ -9,8 +9,8 @@ import ru.techpark.myhw2.R
 import ru.techpark.myhw2.clicklistener.MyClickListener
 import ru.techpark.myhw2.data.DataSource
 
-class MyAdapter(data: MutableList<DataSource>, listener: MyClickListener)
-    : RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(data: MutableList<DataSource>, listener: MyClickListener) :
+    RecyclerView.Adapter<MyViewHolder>() {
 
     private val mListener: MyClickListener = listener
     private val mData: MutableList<DataSource> = data
@@ -35,7 +35,7 @@ class MyAdapter(data: MutableList<DataSource>, listener: MyClickListener)
         return mData.size
     }
 
-    fun getDataList() : List<DataSource> {
+    fun getDataList(): List<DataSource> {
         return mData
     }
 

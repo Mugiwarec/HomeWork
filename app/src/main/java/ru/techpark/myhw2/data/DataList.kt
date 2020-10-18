@@ -3,14 +3,14 @@ package ru.techpark.myhw2.data
 object DataList {
 
     private var counterNumbers = 100
-    private val mData : MutableList<DataSource> =
-        mutableListOf(elements = Array(size = counterNumbers) { i : Int -> DataSource(i + 1) })
+    private val mData: MutableList<DataSource> =
+        mutableListOf(elements = Array(size = counterNumbers) { i: Int -> DataSource(i + 1) })
 
-    fun getCounter() : Int {
+    fun getCounter(): Int {
         return counterNumbers
     }
 
-    fun getData() : MutableList<DataSource> {
+    fun getData(): MutableList<DataSource> {
         return mData
     }
 

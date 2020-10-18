@@ -5,29 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import ru.techpark.myhw2.R
 import ru.techpark.myhw2.data.DataSource
 
-class SingleFragment : BaseFragment() {
+class SingleFragment() : Fragment() {
 
     private var number: Int = 0
     private var color: Int = 0
     private lateinit var mTextView: TextView
 
-    fun setNumber(data: DataSource) {
-        val bundle: Bundle = Bundle()
-        bundle.putInt("number", data.getNumber())
-        bundle.putInt("color", data.getColor())
-        arguments = bundle
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val bundle: Bundle = arguments ?: return
-
-        number = bundle.getInt("number")
-        color = bundle.getInt("color")
+    constructor(data: DataSource) : this() {
+        number = data.getNumber()
+        color = data.getColor()
     }
 
     override fun onCreateView(
@@ -41,9 +31,21 @@ class SingleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (savedInstanceState != null) {
+            number = savedInstanceState.getInt("number")
+            color = savedInstanceState.getInt("color")
+        }
+
         mTextView = view.findViewById(R.id.numberView)
         mTextView.text = number.toString()
         mTextView.setTextColor(color)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt("number", number)
+        outState.putInt("color", color)
     }
 
     companion object {

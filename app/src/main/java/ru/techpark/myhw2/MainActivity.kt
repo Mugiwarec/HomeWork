@@ -11,28 +11,23 @@ import ru.techpark.myhw2.fragment.SingleFragment
 class MainActivity : AppCompatActivity(), MyClickListener {
 
     private var recyclerFragment: RecyclerFragment? = null
-    private var singleFragment: SingleFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerFragment = supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
-        singleFragment = supportFragmentManager.findFragmentByTag(SingleFragment.TAG) as SingleFragment?
+        recyclerFragment =
+            supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
 
         if (recyclerFragment == null) {
             recyclerFragment = RecyclerFragment()
-        }
-
-        if (singleFragment == null) {
-            singleFragment = SingleFragment()
         }
 
         showRecyclerView()
     }
 
     private fun showRecyclerView() {
-        if (supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) != null) {
+        supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG)?.let {
             return
         }
 
@@ -41,22 +36,21 @@ class MainActivity : AppCompatActivity(), MyClickListener {
             .commit()
     }
 
-    private fun showSingleView(data: DataSource) {
-        if (supportFragmentManager.findFragmentByTag(SingleFragment.TAG) != null) {
+    private fun showSingleView(singleFragment: SingleFragment) {
+        supportFragmentManager.findFragmentByTag(SingleFragment.TAG)?.let {
             Log.wtf(MainActivity::class.java.toString(), "SingleFragment execute twice")
             return
         }
 
-        singleFragment!!.setNumber(data)
-
         supportFragmentManager.beginTransaction()
-            .replace(R.id.content, singleFragment!!, SingleFragment.TAG)
+            .replace(R.id.content, singleFragment, SingleFragment.TAG)
             .addToBackStack(SingleFragment.TAG)
             .commit()
     }
 
     override fun onSoloClick(data: DataSource) {
-        showSingleView(data)
+        val singleFragment = SingleFragment(data)
+        showSingleView(singleFragment)
     }
 
 }

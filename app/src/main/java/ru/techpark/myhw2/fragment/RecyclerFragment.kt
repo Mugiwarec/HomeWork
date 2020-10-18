@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.techpark.myhw2.R
@@ -14,10 +14,15 @@ import ru.techpark.myhw2.clicklistener.MyClickListener
 import ru.techpark.myhw2.data.DataList
 import ru.techpark.myhw2.data.DataSource
 
-class RecyclerFragment : BaseFragment(), MyClickListener {
+class RecyclerFragment : Fragment(), MyClickListener {
 
     private lateinit var mAdapter: MyAdapter
-    private var dataSize: Int = DataList.getCounter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        mAdapter = MyAdapter(DataList.getData(), this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,29 +35,18 @@ class RecyclerFragment : BaseFragment(), MyClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
-            dataSize = savedInstanceState.getInt("counterElements")
-        }
-
         val recyclerView: RecyclerView = view.findViewById(R.id.list)
 
         val button: Button = view.findViewById(R.id.button_add)
         button.setOnClickListener {
             DataList.addList()
-            mAdapter!!.notifyDataSetChanged()
+            mAdapter.notifyItemChanged(DataList.getCounter())
         }
 
-        mAdapter = MyAdapter(DataList.getData(), this)
-        var columns: Int = resources.getInteger(R.integer.counter_columns)
+        val columns: Int = resources.getInteger(R.integer.counter_columns)
 
         recyclerView.layoutManager = GridLayoutManager(view.context, columns)
         recyclerView.adapter = mAdapter
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        outState.putInt("counterElements", mAdapter!!.getDataList().size)
     }
 
     override fun onSoloClick(data: DataSource) {
