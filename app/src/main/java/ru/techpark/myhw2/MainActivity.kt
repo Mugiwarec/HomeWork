@@ -29,15 +29,15 @@ class MainActivity : AppCompatActivity(), MyClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt("counterNumbers", DataList.counterNumbers)
+        outState.putInt("sizeList", DataList.sizeList)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
 
-        val counterNumber = savedInstanceState.getInt("counterNumbers")
-        if (counterNumber != 0) {
-            DataList.restoreList(counterNumber)
+        val sizeList = savedInstanceState.getInt("sizeList")
+        if (sizeList != 0) {
+            DataList.resizeTo(sizeList)
         }
     }
 

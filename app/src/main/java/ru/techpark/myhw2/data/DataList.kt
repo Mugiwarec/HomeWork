@@ -2,22 +2,22 @@ package ru.techpark.myhw2.data
 
 object DataList {
 
-    var counterNumbers = 100
+    var sizeList = 100
         private set
 
-    var mData: MutableList<DataSource> = (1..counterNumbers).map { DataSource(it) }.toMutableList()
+    var mData: MutableList<DataSource> = (1..sizeList).map { DataSource(it) }.toMutableList()
         private set
 
     fun addList() {
-        counterNumbers++
-        mData.add(DataSource(counterNumbers))
+        sizeList++
+        mData.add(DataSource(sizeList))
     }
 
-    fun restoreList(value: Int) {
-        if (mData.size != value) {
-            mData.addAll((counterNumbers + 1..value).map { DataSource(it) }.toMutableList())
+    fun resizeTo(newSize: Int) {
+        if (mData.size != newSize) {
+            mData.addAll((sizeList + 1..newSize).map { DataSource(it) }.toMutableList())
 
-            counterNumbers = value
+            sizeList = newSize
         }
     }
 

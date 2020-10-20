@@ -42,7 +42,7 @@ class RecyclerFragment : Fragment(), MyClickListener {
         val button: Button = view.findViewById(R.id.button_add)
         button.setOnClickListener {
             DataList.addList()
-            mAdapter.notifyItemChanged(DataList.counterNumbers)
+            mAdapter.notifyItemChanged(DataList.sizeList)
         }
 
         val columns: Int = resources.getInteger(R.integer.counter_columns)
