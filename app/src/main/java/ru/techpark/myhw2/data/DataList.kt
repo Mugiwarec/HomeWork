@@ -13,4 +13,12 @@ object DataList {
         mData.add(DataSource(counterNumbers))
     }
 
+    fun restoreList(value: Int) {
+        if (mData.size != value) {
+            mData.addAll((counterNumbers + 1..value).map { DataSource(it) }.toMutableList())
+
+            counterNumbers = value
+        }
+    }
+
 }
