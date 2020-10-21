@@ -41,9 +41,8 @@ class MainActivity : AppCompatActivity(), MyClickListener {
         super.onRestoreInstanceState(savedInstanceState)
 
         val sizeList = savedInstanceState.getInt("sizeList")
-        if (sizeList != 0) {
+        if (sizeList != 0)
             DataList.resizeTo(sizeList)
-        }
     }
 
     private fun showRecyclerView() {

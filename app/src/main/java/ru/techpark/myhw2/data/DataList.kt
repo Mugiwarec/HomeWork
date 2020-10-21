@@ -10,9 +10,8 @@ object DataList {
     }
 
     fun resizeTo(newSize: Int) {
-        if (mData.size != newSize) {
+        if (mData.size != newSize)
             mData.addAll((mData.size + 1..newSize).map { DataSource(it) }.toMutableList())
-        }
     }
 
 }
