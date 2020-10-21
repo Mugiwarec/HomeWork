@@ -20,9 +20,10 @@ class RecyclerFragment : Fragment(), MyClickListener {
     private lateinit var mAdapter: MyAdapter
     private lateinit var listener: MyClickListener
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
+        listener = context as MyClickListener
         mAdapter = MyAdapter(DataList.mData, listener)
     }
 
@@ -42,7 +43,7 @@ class RecyclerFragment : Fragment(), MyClickListener {
         val button: Button = view.findViewById(R.id.button_add)
         button.setOnClickListener {
             DataList.addList()
-            mAdapter.notifyItemChanged(DataList.sizeList)
+            mAdapter.notifyItemChanged(DataList.mData.size)
         }
 
         val columns: Int = resources.getInteger(R.integer.counter_columns)
@@ -53,12 +54,6 @@ class RecyclerFragment : Fragment(), MyClickListener {
 
     override fun onSoloClick(data: DataSource) {
         listener.onSoloClick(data)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        listener = context as MyClickListener
     }
 
     companion object {

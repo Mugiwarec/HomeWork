@@ -12,10 +12,16 @@ import ru.techpark.myhw2.fragment.SingleFragment
 class MainActivity : AppCompatActivity(), MyClickListener {
 
     private var recyclerFragment: RecyclerFragment? = null
+    private val default = 100
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (DataList.mData.isEmpty()) {
+            DataList.resizeTo(default)
+        }
 
         recyclerFragment =
             supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
@@ -29,7 +35,7 @@ class MainActivity : AppCompatActivity(), MyClickListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt("sizeList", DataList.sizeList)
+        outState.putInt("sizeList", DataList.mData.size)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
