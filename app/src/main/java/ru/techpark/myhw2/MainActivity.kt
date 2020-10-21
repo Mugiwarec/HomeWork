@@ -19,9 +19,8 @@ class MainActivity : AppCompatActivity(), MyClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (DataList.mData.isEmpty()) {
+        if (DataList.mData.isEmpty())
             DataList.resizeTo(default)
-        }
 
         recyclerFragment =
             supportFragmentManager.findFragmentByTag(RecyclerFragment.TAG) as RecyclerFragment?
